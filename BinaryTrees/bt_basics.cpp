@@ -46,3 +46,29 @@ pair<int, int> diameter(TreeNode* root){
         
         
 }
+
+// check if bt is balanced
+
+pair<bool, int> balance(TreeNode* root){
+    if(root == NULL) return make_pair(true, 0);
+
+    pair<bool, int> left = balance(root->left);
+    pair<bool, int> right = balance(root->right);
+    bool leftbalanced = left.first;
+    bool rightbalanced = right.first;
+
+    pair<bool, int> ans;
+    ans.second = max(left.second, right.second) +1;
+    int balance = abs(left.second-right.second) ;
+
+    if (left.first && right.first && balance<=1) ans.first =  true;
+    else ans.first= false;
+
+    return ans;
+}
+
+bool isBalanced(TreeNode* root) {
+    pair<bool, int> result = balance(root);
+    return result.first;
+}
+        
