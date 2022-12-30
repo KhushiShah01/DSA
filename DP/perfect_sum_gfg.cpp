@@ -17,6 +17,7 @@ class Solution{
             for(int j=0;j<=sum;j++){
                 if (arr[i-1]>j)
                 {
+			// mod used to prevent overflow
                     dp[i][j] = dp[i-1][j]%1000000007;
                 }
                 else
